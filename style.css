@@ -1,0 +1,77 @@
+body {
+	background: silver;
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	letter-spacing: 1px;
+	margin: 0;
+	padding-top: 40px;
+}
+
+form {
+	float: right;
+	padding: 0 50px;
+	width: 250px;
+}
+
+input, textarea {
+	line-height: 20px;
+	margin: 10px 0;
+	width: 100%
+}
+
+.form-container {
+	float: left;
+	width: 50%;
+}
+
+.message-container {
+	float: left;
+	width: 50%;
+}
+
+.user-name {
+	color: #555;
+	margin: 0 15px;
+	padding: 5px 50px;
+}
+
+.user-message {
+	background-color: #5CB85C;
+	border-radius: 15px;
+	color: #FFF;
+	font-size: 14px;
+	letter-spacing: 1px;
+	margin: 0 0 20px 50px;
+	padding: 20px;
+	width: fit-content;
+	max-width: 250px;
+}
+
+.php-info-div {
+	margin: auto;
+	margin-top: 30px;
+	width: 250px;
+}
+
+.submit-btn {
+	background-color: blue;
+	color: #FFF;
+	width: 100px;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.warning-container {
+	color: red;
+	float: right;
+	padding: 0 50px;
+	width: 250px;
+}
+
+.success-container {
+	color: green;
+	float: right;
+	padding: 0 50px;
+	width: 250px;
+}
