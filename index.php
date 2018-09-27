@@ -40,6 +40,7 @@
 			if ($ok) {
 				if (getenv('SERVER_NAME') === 'localhost') {
 					$db = mysqli_connect('localhost:3307', 'root', '', 'php');
+
 					$sql = sprintf("INSERT INTO messages (name, email, message) Values ('%s', '%s', '%s'
 					)", mysqli_real_escape_string($db, $name),
 					mysqli_real_escape_string($db, $email),
@@ -59,16 +60,25 @@
 					$username = $url['user'];
 					$password = $url['pass'];
 					$db = substr($url['path'], 1);
+					
+					$conn = mysqli_connect($server, $username, $password, $db);
 
-					$conn = new mysqli($server, $username, $pass, $db);
-					$sql = sprintf("INSERT INTO messages (name, email, message) VALUES ('%s', '%s', '%s'
-					)", mysqli_real_escape_string($conn, $name),
+					$sql = sprintf("INSERT INTO messages (name, email, message) VALUES ('%s', '%s', '%s')",
+						mysqli_real_escape_string($conn, $name),
 						mysqli_real_escape_string($conn, $email),
 						mysqli_real_escape_string($conn, $message));
-						mysqli_real_escape_string($conn, $sql);
-						mysqli_close($conn);
 
-					$success = 'Thank you. Your submission was saved.';
+					$result = mysqli_query($conn, $sql);
+
+					if (!$result) {
+						echo 'an error occurred.';
+					}
+
+					else {
+						$success = 'Thank you. Your submission was saved.';
+						mysqli_close($conn);
+					}
+
 					$name = "";
 					$email = "";
 					$message = "";
@@ -110,7 +120,9 @@
 		<?php
 			if (getenv('SERVER_NAME') === 'localhost') {
 				$db2 = mysqli_connect('localhost:3307', 'root', '', 'php');
+
 				$sql2 = 'SELECT * FROM messages ORDER BY id DESC';
+
 				$result = mysqli_query($db2, $sql2);
 
 				foreach ($result as $row) {
@@ -130,18 +142,24 @@
 				$password = $url['pass'];
 				$db = substr($url['path'], 1);
 
-				$conn2 = new mysqli($server, $username, $pass, $db);
+				$conn2 = mysqli_connect($server, $username, $password, $db);
+
 				$sql2 = 'SELECT * FROM messages ORDER BY id DESC';
+				
 				$result = mysqli_query($conn2, $sql2);
 
-				foreach ($result as $row) {
-					printf('<h6 class="user-name">%s</h6><h4 class="user-message">%s</h4>',
-						htmlspecialchars($row['name']),
-						htmlspecialchars($row['message'])
-					);
+				if (!$result) {
+					echo 'Something went wrong '.$conn2->errorno;
 				}
 
-				mysqli_close($conn2);
+				else {
+					foreach ($result as $row) {
+						printf('<h6 class="user-name">%s</h6><h4 class="user-message">%s</h4>',
+							htmlspecialchars($row['name']),
+							htmlspecialchars($row['message'])
+						);
+					}
+				}
 			}
 		?>
 	</div>
