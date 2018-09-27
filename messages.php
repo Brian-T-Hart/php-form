@@ -38,17 +38,41 @@
 			}
 
 			if ($ok) {
-				$db = mysqli_connect('localhost:3307', 'root', '', 'php');
-				$sql = sprintf("INSERT INTO messages (name, email, message) Values ('%s', '%s', '%s'
-				)", mysqli_real_escape_string($db, $name),
-				mysqli_real_escape_string($db, $email),
-				mysqli_real_escape_string($db, $message));
-				mysqli_query($db, $sql);
-				mysqli_close($db);
-				$success = 'Thank you. Your submission was saved.';
-				$name = "";
-				$email = "";
-				$message = "";
+				if (getenv('SERVER_NAME') === 'localhost') {
+					$db = mysqli_connect('localhost:3307', 'root', '', 'php');
+					$sql = sprintf("INSERT INTO messages (name, email, message) Values ('%s', '%s', '%s'
+					)", mysqli_real_escape_string($db, $name),
+					mysqli_real_escape_string($db, $email),
+					mysqli_real_escape_string($db, $message));
+					mysqli_query($db, $sql);
+					mysqli_close($db);
+
+					$success = 'Thank you. Your submission was saved.';
+					$name = "";
+					$email = "";
+					$message = "";
+				}
+				
+				else {
+					$url = parse_url(getenv('mysql://b384fbaa02c4f8:8d4d5490@us-cdbr-iron-east-01.cleardb.net/heroku_3fc8edb8ef3c91e?reconnect=true'));
+					$server = $url['host'];
+					$username = $url['user'];
+					$password = $url['pass'];
+					$db = substr($url['path'], 1);
+
+					$conn = new mysqli($server, $username, $pass, $db);
+					$sql = sprintf("INSERT INTO messages (name, email, message) VALUES ('%s', '%s', '%s'
+					)", mysqli_real_escape_string($conn, $name),
+						mysqli_real_escape_string($conn, $email),
+						mysqli_real_escape_string($conn, $message));
+						mysqli_real_escape_string($conn, $sql);
+						mysqli_close($conn);
+
+					$success = 'Thank you. Your submission was saved.';
+					$name = "";
+					$email = "";
+					$message = "";
+				}
 			}
 		}
 	?>
@@ -84,18 +108,41 @@
 
 	<div class="message-container">
 		<?php
-			$db2 = mysqli_connect('localhost:3307', 'root', '', 'php');
-			$sql2 = 'SELECT * FROM messages ORDER BY id DESC';
-			$result = mysqli_query($db2, $sql2);
+			if (getenv('SERVER_NAME') === 'localhost') {
+				$db2 = mysqli_connect('localhost:3307', 'root', '', 'php');
+				$sql2 = 'SELECT * FROM messages ORDER BY id DESC';
+				$result = mysqli_query($db2, $sql2);
 
-			foreach ($result as $row) {
-				printf('<h6 class="user-name">%s</h6><h4 class="user-message">%s</h4>',
-					htmlspecialchars($row['name']),
-					htmlspecialchars($row['message'])
-			);
+				foreach ($result as $row) {
+					printf('<h6 class="user-name">%s</h6><h4 class="user-message">%s</h4>',
+						htmlspecialchars($row['name']),
+						htmlspecialchars($row['message'])
+					);
+				}
+
+				mysqli_close($conn);
 			}
 
-			mysqli_close($db2);
+			else {
+				$url = parse_url(getenv('mysql://b384fbaa02c4f8:8d4d5490@us-cdbr-iron-east-01.cleardb.net/heroku_3fc8edb8ef3c91e?reconnect=true'));
+				$server = $url['host'];
+				$username = $url['user'];
+				$password = $url['pass'];
+				$db = substr($url['path'], 1);
+
+				$conn2 = new mysqli($server, $username, $pass, $db);
+				$sql2 = 'SELECT * FROM messages ORDER BY id DESC';
+				$result = mysqli_query($conn2, $sql2);
+
+				foreach ($result as $row) {
+					printf('<h6 class="user-name">%s</h6><h4 class="user-message">%s</h4>',
+						htmlspecialchars($row['name']),
+						htmlspecialchars($row['message'])
+					);
+				}
+
+				mysqli_close($conn2);
+			}
 		?>
 	</div>
 </body>
