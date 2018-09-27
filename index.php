@@ -54,7 +54,7 @@
 				}
 				
 				else {
-					$url = parse_url(getenv('mysql://b384fbaa02c4f8:8d4d5490@us-cdbr-iron-east-01.cleardb.net/heroku_3fc8edb8ef3c91e?reconnect=true'));
+					$url = parse_url(getenv('CLEARDB_DATABASE_URL'));
 					$server = $url['host'];
 					$username = $url['user'];
 					$password = $url['pass'];
@@ -124,7 +124,7 @@
 			}
 
 			else {
-				$url = parse_url(getenv('mysql://b384fbaa02c4f8:8d4d5490@us-cdbr-iron-east-01.cleardb.net/heroku_3fc8edb8ef3c91e?reconnect=true'));
+				$url = parse_url(getenv('CLEARDB_DATABASE_URL'));
 				$server = $url['host'];
 				$username = $url['user'];
 				$password = $url['pass'];
