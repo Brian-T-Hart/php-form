@@ -121,7 +121,7 @@
 			if (getenv('SERVER_NAME') === 'localhost') {
 				$db2 = mysqli_connect('localhost:3307', 'root', '', 'php');
 
-				$sql2 = 'SELECT * FROM messages ORDER BY id DESC LIMIT 10';
+				$sql2 = 'SELECT * FROM messages ORDER BY id DESC LIMIT 15';
 
 				$result = mysqli_query($db2, $sql2);
 
@@ -144,7 +144,7 @@
 
 				$conn2 = mysqli_connect($server, $username, $password, $db);
 
-				$sql2 = 'SELECT * FROM messages ORDER BY id DESC';
+				$sql2 = 'SELECT * FROM messages ORDER BY id DESC LIMIT 15';
 				
 				$result = mysqli_query($conn2, $sql2);
 
