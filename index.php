@@ -2,6 +2,8 @@
 <html>
 <head>
 	<title>Contact Form</title>
+	<meta charset="utf-8"/>
+	<meta name = "viewport" content = "width = device-width">
 	<link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>

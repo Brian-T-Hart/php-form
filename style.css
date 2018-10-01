@@ -75,3 +75,34 @@ input, textarea {
 	padding: 0 50px;
 	width: 250px;
 }
+
+@media screen and (max-width: 800px) {
+	form {
+		float: none;
+		margin: auto;
+	}
+	
+	.form-container, .message-container, .warning-container, .success-container {
+		float: none;
+		margin: auto;
+	}
+
+	.form-container, .message-container {
+		width: 80%;
+	}
+
+	.message-container {
+		margin-top: 40px;
+	}
+
+	.user-name {
+		text-align: center;
+	}
+
+	.user-message {
+		font-size: 16px;
+		margin: auto;
+		margin-bottom: 20px;
+	}
+
+  }
