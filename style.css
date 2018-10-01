@@ -3,7 +3,6 @@ body {
 	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 	letter-spacing: 1px;
 	margin: 0;
-	padding-top: 40px;
 }
 
 form {
@@ -15,7 +14,8 @@ form {
 input, textarea {
 	line-height: 20px;
 	margin: 10px 0;
-	width: 100%
+	width: 100%;
+	max-width: 100%;
 }
 
 .form-container {
@@ -23,15 +23,39 @@ input, textarea {
 	width: 50%;
 }
 
+.form-message-container {
+	float: right;
+	height: 60px;
+	padding: 30px 50px 10px 50px;
+	width: 250px;
+}
+
 .message-container {
 	float: left;
+	padding-top: 40px;
 	width: 50%;
 }
 
-.user-name {
-	color: #555;
-	margin: 0 15px;
-	padding: 5px 50px;
+.php-info-div {
+	margin: auto;
+	margin-top: 30px;
+	width: 250px;
+}
+
+.submit-btn {
+	background-color: #FF4500;
+	color: #FFF;
+	letter-spacing: 2px;
+	padding: 4px 0;
+	width: 100px;
+}
+
+.success-message {
+	color: #5CB85C;
+}
+
+.text-center {
+	text-align: center;
 }
 
 .user-message {
@@ -46,34 +70,14 @@ input, textarea {
 	max-width: 250px;
 }
 
-.php-info-div {
-	margin: auto;
-	margin-top: 30px;
-	width: 250px;
+.user-name {
+	color: #555;
+	margin: 0 15px;
+	padding: 5px 50px;
 }
 
-.submit-btn {
-	background-color: #0000FF;
-	color: #FFF;
-	width: 100px;
-}
-
-.text-center {
-	text-align: center;
-}
-
-.warning-container {
-	color: #FF0000;
-	float: right;
-	padding: 0 50px;
-	width: 250px;
-}
-
-.success-container {
-	color: #5CB85C;
-	float: right;
-	padding: 0 50px;
-	width: 250px;
+.warning-message {
+	color: #FF4500;
 }
 
 @media screen and (max-width: 800px) {
@@ -82,17 +86,13 @@ input, textarea {
 		margin: auto;
 	}
 	
-	.form-container, .message-container, .warning-container, .success-container {
+	.form-container, .message-container, .form-message-container {
 		float: none;
 		margin: auto;
 	}
 
 	.form-container, .message-container {
-		width: 80%;
-	}
-
-	.message-container {
-		margin-top: 40px;
+		width: 100%;
 	}
 
 	.user-name {

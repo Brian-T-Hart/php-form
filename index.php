@@ -90,12 +90,9 @@
 	?>
 
 	<div class="form-container">
-		<div class="warning-container">
-			<h3 class="text-center warning"><?php echo $warning ?></h3>
-		</div>
-
-		<div class="success-container">
-			<h3 class="text-center success"><?php echo $success ?></h3>
+		<div class="form-message-container">
+			<h3 class="text-center warning-message"><i><?php echo $warning ?></i></h3>
+			<h3 class="text-center success-message"><?php echo $success ?></h3>
 		</div>
 
 		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
